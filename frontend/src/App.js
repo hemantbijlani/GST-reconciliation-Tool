@@ -581,7 +581,7 @@ function App() {
     } catch (error) {
       toast({
         title: "Upload failed",
-        description: error.response?.data?.detail || "Failed to upload file",
+        description: getErrorMessage(error),
         variant: "destructive",
       });
     } finally {
