@@ -485,11 +485,11 @@ const ReconciliationResults = ({ summary, matches }) => {
                       </TableCell>
                       <TableCell className="font-medium">{match.gstin}</TableCell>
                       <TableCell>{match.invoice_number}</TableCell>
-                      <TableCell className={match.invoice_amount_diff !== 0 ? 'text-red-600 font-medium' : ''}>
-                        ₹{match.invoice_amount_diff?.toFixed(2)}
+                      <TableCell className={(match.invoice_amount_diff || 0) !== 0 ? 'text-red-600 font-medium' : ''}>
+                        ₹{(match.invoice_amount_diff || 0).toFixed(2)}
                       </TableCell>
-                      <TableCell className={match.total_tax_diff !== 0 ? 'text-orange-600 font-medium' : ''}>
-                        ₹{match.total_tax_diff?.toFixed(2)}
+                      <TableCell className={(match.total_tax_diff || 0) !== 0 ? 'text-orange-600 font-medium' : ''}>
+                        ₹{(match.total_tax_diff || 0).toFixed(2)}
                       </TableCell>
                     </TableRow>
                   ))}
