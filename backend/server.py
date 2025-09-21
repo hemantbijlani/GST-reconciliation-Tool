@@ -53,7 +53,6 @@ class GSTRecordCreate(BaseModel):
     sgst: float = 0.0
     igst: float = 0.0
     vendor_name: Optional[str] = None
-    record_type: str
 
 class ReconciliationMatch(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
