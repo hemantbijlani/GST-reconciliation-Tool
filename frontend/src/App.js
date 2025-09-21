@@ -1018,8 +1018,8 @@ function App() {
       const response = await axios.delete(`${API}/records/${recordType}`);
       
       toast({
-        title: "Data cleared successfully",
-        description: response.data.message || `${recordType} data has been cleared`,
+        title: "✅ Data cleared successfully",
+        description: response.data.message || `${recordType} data has been cleared. You can now upload new data.`,
       });
 
       await loadData();
