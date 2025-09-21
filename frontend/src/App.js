@@ -999,8 +999,8 @@ function App() {
       document.body.removeChild(link);
       
       toast({
-        title: "Export successful",
-        description: "Your reconciliation report has been downloaded",
+        title: "✅ Export successful",
+        description: `Your reconciliation report (${filename}) has been downloaded successfully`,
       });
     } catch (error) {
       toast({
