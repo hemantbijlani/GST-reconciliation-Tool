@@ -260,11 +260,11 @@ const DataTable = ({ data, title, recordType }) => {
                   <TableCell className="font-medium">{record.gstin}</TableCell>
                   <TableCell>{record.invoice_number}</TableCell>
                   <TableCell>{record.invoice_date}</TableCell>
-                  <TableCell>₹{record.invoice_amount?.toLocaleString()}</TableCell>
-                  <TableCell>₹{record.cgst?.toFixed(2)}</TableCell>
-                  <TableCell>₹{record.sgst?.toFixed(2)}</TableCell>
-                  <TableCell>₹{record.igst?.toFixed(2)}</TableCell>
-                  <TableCell>₹{record.total_tax?.toFixed(2)}</TableCell>
+                  <TableCell>₹{(record.invoice_amount || 0).toLocaleString()}</TableCell>
+                  <TableCell>₹{(record.cgst || 0).toFixed(2)}</TableCell>
+                  <TableCell>₹{(record.sgst || 0).toFixed(2)}</TableCell>
+                  <TableCell>₹{(record.igst || 0).toFixed(2)}</TableCell>
+                  <TableCell>₹{(record.total_tax || 0).toFixed(2)}</TableCell>
                   {recordType === 'BOOKS' && <TableCell>{record.vendor_name || '-'}</TableCell>}
                 </TableRow>
               ))}
