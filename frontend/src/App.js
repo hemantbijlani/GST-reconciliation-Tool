@@ -602,7 +602,7 @@ function App() {
     } catch (error) {
       toast({
         title: "Failed to add record",
-        description: error.response?.data?.detail || "Failed to add record",
+        description: getErrorMessage(error),
         variant: "destructive",
       });
     }
