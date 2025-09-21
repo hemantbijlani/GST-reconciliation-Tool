@@ -155,7 +155,7 @@ class GSTReconciliationTester:
         """Test manual record creation"""
         if record_type == "BOOKS":
             data = {
-                "gstin": "27MANUAL001",
+                "gstin": "27MANUAL0001ZX5",
                 "invoice_number": "MAN001",
                 "invoice_date": "2024-01-20",
                 "invoice_amount": 5000.00,
@@ -167,7 +167,7 @@ class GSTReconciliationTester:
             }
         else:
             data = {
-                "gstin": "27MANUAL001",
+                "gstin": "27MANUAL0001ZX5",
                 "invoice_number": "MAN001",
                 "invoice_date": "2024-01-20",
                 "invoice_amount": 5200.00,  # Slight amount difference for testing
