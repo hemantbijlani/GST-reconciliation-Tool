@@ -420,7 +420,7 @@ const ReconciliationResults = ({ summary, matches }) => {
                 <div className="flex justify-between items-center mb-2">
                   <span className="text-sm font-medium">Total Amount Difference</span>
                   <span className="text-lg font-bold text-red-600">
-                    ₹{summary.total_amount_difference?.toLocaleString()}
+                    ₹{(summary.total_amount_difference || 0).toLocaleString()}
                   </span>
                 </div>
                 <Progress 
