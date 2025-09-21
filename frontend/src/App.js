@@ -940,8 +940,8 @@ function App() {
       const response = await axios.post(`${API}/reconcile`);
       
       toast({
-        title: "Reconciliation completed",
-        description: `Successfully processed ${response.data.matches_processed} records`,
+        title: "✅ Reconciliation completed",
+        description: `Successfully analyzed ${response.data.matches_processed} records. Check the results below.`,
       });
 
       await loadData();
