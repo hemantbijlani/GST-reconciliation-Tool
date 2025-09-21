@@ -316,11 +316,12 @@ async def create_gst_record(record_type: str, record: GSTRecordCreate):
     # Calculate total tax
     total_tax = record.cgst + record.sgst + record.igst
     
-    gst_record = GSTRecord(
-        **record.dict(),
-        record_type=record_type,
-        total_tax=total_tax
-    )
+    # Create record dict and update with additional fields
+    record_data = record.dict()
+    record_data['total_tax'] = total_tax
+    # record_type is already in the record_data from the model
+    
+    gst_record = GSTRecord(**record_data)
     
     record_dict = prepare_for_mongo(gst_record.dict())
     await db.gst_records.insert_one(record_dict)
