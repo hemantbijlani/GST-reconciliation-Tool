@@ -373,7 +373,7 @@ const ReconciliationResults = ({ summary, matches }) => {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-gray-600">{stat.title}</p>
-                  <p className="text-2xl font-bold">{stat.value.toLocaleString()}</p>
+                  <p className="text-2xl font-bold">{(stat.value || 0).toLocaleString()}</p>
                 </div>
                 <stat.icon className="h-8 w-8 text-gray-400" />
               </div>
