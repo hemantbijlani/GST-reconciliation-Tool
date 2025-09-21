@@ -319,7 +319,7 @@ async def create_gst_record(record_type: str, record: GSTRecordCreate):
     # Create record dict and update with additional fields
     record_data = record.dict()
     record_data['total_tax'] = total_tax
-    # record_type is already in the record_data from the model
+    record_data['record_type'] = record_type  # Use the path parameter
     
     gst_record = GSTRecord(**record_data)
     
