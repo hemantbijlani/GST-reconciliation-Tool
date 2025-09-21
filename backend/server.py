@@ -115,27 +115,27 @@ def process_excel_data(file_content: bytes, record_type: str) -> List[Dict]:
     # Standardize column names (case insensitive mapping)
     column_mapping = {
         'gstin': ['gstin', 'gst_number', 'gst_no', 'vendor_gstin'],
-        'invoice_number': ['invoice_number', 'invoice_no', 'inv_no', 'bill_no'],
-        'invoice_date': ['invoice_date', 'inv_date', 'bill_date', 'date'],
-        'invoice_amount': ['invoice_amount', 'inv_amount', 'bill_amount', 'amount', 'total_amount'],
+        'invoice_number': ['invoice_number', 'invoice_no', 'inv_no', 'bill_no', 'invoice number'],
+        'invoice_date': ['invoice_date', 'inv_date', 'bill_date', 'date', 'invoice date'],
+        'invoice_amount': ['invoice_amount', 'inv_amount', 'bill_amount', 'amount', 'total_amount', 'invoice amount'],
         'cgst': ['cgst', 'cgst_amount'],
         'sgst': ['sgst', 'sgst_amount'],
         'igst': ['igst', 'igst_amount'],
-        'vendor_name': ['vendor_name', 'supplier_name', 'party_name', 'vendor']
+        'vendor_name': ['vendor_name', 'supplier_name', 'party_name', 'vendor', 'vendor name']
     }
     
     # Create a mapping of actual columns to standard columns
-    actual_columns = df.columns.str.lower().str.strip()
+    actual_columns = df.columns.str.lower().str.strip().str.replace(' ', '_')
     standard_mapping = {}
     
     for standard_col, possible_names in column_mapping.items():
         for possible_name in possible_names:
-            if possible_name in actual_columns.values:
-                matching_indices = actual_columns == possible_name
-                if matching_indices.any():
-                    original_col = df.columns[matching_indices].tolist()[0]
-                    standard_mapping[original_col] = standard_col
-                    break
+            normalized_possible = possible_name.lower().strip().replace(' ', '_')
+            matching_mask = actual_columns == normalized_possible
+            if matching_mask.any():
+                original_col = df.columns[matching_mask].tolist()[0]
+                standard_mapping[original_col] = standard_col
+                break
     
     # Rename columns
     df = df.rename(columns=standard_mapping)
