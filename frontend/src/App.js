@@ -890,24 +890,34 @@ function App() {
 
   const handleManualEntry = async (data, recordType) => {
     try {
-      await axios.post(`${API}/records/${recordType}`, {
+      const response = await axios.post(`${API}/records/${recordType}`, {
         ...data,
         record_type: recordType
       });
       
       toast({
-        title: "Record added successfully",
-        description: `${recordType} record has been added to your data`,
+        title: "✅ Record added successfully",
+        description: `${recordType} record for ${data.gstin} has been added to your data`,
       });
 
       await loadData();
+      return true; // Indicate success to the form
     } catch (error) {
-      const errorMessage = error.response?.data?.detail || "Failed to add record";
+      const errorDetail = error.response?.data?.detail;
+      let errorMessage = "Failed to add record";
+      
+      if (typeof errorDetail === 'string') {
+        errorMessage = errorDetail;
+      } else if (Array.isArray(errorDetail)) {
+        errorMessage = errorDetail[0]?.msg || errorDetail[0] || "Validation error";
+      }
+      
       toast({
-        title: "Failed to add record",
+        title: "❌ Failed to add record",
         description: errorMessage,
         variant: "destructive",
       });
+      return false; // Indicate failure to the form
     }
   };
 
