@@ -657,7 +657,7 @@ function App() {
     } catch (error) {
       toast({
         title: "Failed to clear data",
-        description: error.response?.data?.detail || "Failed to clear data",
+        description: getErrorMessage(error),
         variant: "destructive",
       });
     }
