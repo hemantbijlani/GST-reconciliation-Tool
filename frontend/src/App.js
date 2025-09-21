@@ -675,7 +675,7 @@ function App() {
           <Card>
             <CardContent className="p-6 text-center">
               <BarChart3 className="h-8 w-8 text-purple-500 mx-auto mb-2" />
-              <p className="text-2xl font-bold">{reconciliationSummary?.matched_records || 0}</p>
+              <p className="text-2xl font-bold">{(reconciliationSummary?.matched_records || 0).toString()}</p>
               <p className="text-sm text-gray-600">Matched Records</p>
             </CardContent>
           </Card>
