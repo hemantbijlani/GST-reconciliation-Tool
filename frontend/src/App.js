@@ -864,17 +864,19 @@ function App() {
       });
 
       toast({
-        title: "Upload successful",
-        description: response.data.message || `Successfully uploaded ${recordType} data`,
+        title: "✅ Upload successful",
+        description: response.data.message || `Successfully uploaded ${response.data.uploaded_count || 0} ${recordType} records`,
       });
 
       // Show warnings if any
       if (response.data.warnings) {
-        toast({
-          title: "Upload completed with warnings",
-          description: `${response.data.warnings.failed_validations} rows had validation issues`,
-          variant: "destructive",
-        });
+        setTimeout(() => {
+          toast({
+            title: "⚠️ Upload completed with warnings",
+            description: `${response.data.warnings.failed_validations} rows had validation issues. Please check your data.`,
+            variant: "destructive",
+          });
+        }, 1000);
       }
 
       await loadData();
