@@ -131,9 +131,11 @@ def process_excel_data(file_content: bytes, record_type: str) -> List[Dict]:
     for standard_col, possible_names in column_mapping.items():
         for possible_name in possible_names:
             if possible_name in actual_columns.values:
-                original_col = df.columns[actual_columns == possible_name].iloc[0]
-                standard_mapping[original_col] = standard_col
-                break
+                matching_indices = actual_columns == possible_name
+                if matching_indices.any():
+                    original_col = df.columns[matching_indices].tolist()[0]
+                    standard_mapping[original_col] = standard_col
+                    break
     
     # Rename columns
     df = df.rename(columns=standard_mapping)
