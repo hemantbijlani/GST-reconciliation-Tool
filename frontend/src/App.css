@@ -251,9 +251,47 @@ body {
   background-color: #f9fafb;
 }
 
-/* Tab enhancements */
+/* Enhanced Tab content animations */
 .tab-content {
-  animation: fadeIn 0.3s ease-out;
+  animation: slideUpFade 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Enhanced button hover effects */
+.button-hover-scale {
+  transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.button-hover-scale::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s;
+}
+
+.button-hover-scale:hover::before {
+  left: 100%;
+}
+
+.button-hover-scale:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 /* File upload zone */
