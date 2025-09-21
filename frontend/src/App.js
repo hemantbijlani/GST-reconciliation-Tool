@@ -632,7 +632,7 @@ function App() {
     } catch (error) {
       toast({
         title: "Reconciliation failed",
-        description: error.response?.data?.detail || "Failed to perform reconciliation",
+        description: getErrorMessage(error),
         variant: "destructive",
       });
     } finally {
