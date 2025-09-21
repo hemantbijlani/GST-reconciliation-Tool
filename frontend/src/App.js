@@ -30,6 +30,22 @@ import { useDropzone } from 'react-dropzone';
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
+// Helper function to extract error message from API response
+const getErrorMessage = (error) => {
+  if (error.response?.data?.detail) {
+    const detail = error.response.data.detail;
+    // If detail is an array (validation errors), extract messages
+    if (Array.isArray(detail)) {
+      return detail.map(err => err.msg || err.message || 'Validation error').join(', ');
+    }
+    // If detail is a string, return it directly
+    if (typeof detail === 'string') {
+      return detail;
+    }
+  }
+  return 'An error occurred';
+};
+
 // File Upload Component
 const FileUploadZone = ({ onFileUpload, recordType, isUploading }) => {
   const { toast } = useToast();
