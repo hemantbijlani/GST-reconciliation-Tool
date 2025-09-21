@@ -424,7 +424,7 @@ const ReconciliationResults = ({ summary, matches }) => {
                   </span>
                 </div>
                 <Progress 
-                  value={Math.min((summary.total_amount_difference / 1000000) * 100, 100)} 
+                  value={Math.min(((summary.total_amount_difference || 0) / 1000000) * 100, 100)} 
                   className="h-2"
                 />
               </div>
