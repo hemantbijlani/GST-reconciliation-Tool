@@ -347,7 +347,7 @@ const ReconciliationResults = ({ summary, matches }) => {
     } catch (error) {
       toast({
         title: "Export failed",
-        description: "Failed to export reconciliation results.",
+        description: getErrorMessage(error),
         variant: "destructive",
       });
     }
