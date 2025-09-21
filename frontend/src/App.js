@@ -192,7 +192,7 @@ const ManualEntryForm = ({ recordType, onSubmit }) => {
     setIsSubmitting(true);
     
     try {
-      await onSubmit({
+      const success = await onSubmit({
         ...formData,
         gstin: formData.gstin.toUpperCase(),
         invoice_amount: parseFloat(formData.invoice_amount) || 0,
@@ -201,18 +201,20 @@ const ManualEntryForm = ({ recordType, onSubmit }) => {
         igst: parseFloat(formData.igst) || 0,
       });
       
-      // Reset form
-      setFormData({
-        gstin: '',
-        invoice_number: '',
-        invoice_date: '',
-        invoice_amount: '',
-        cgst: '',
-        sgst: '',
-        igst: '',
-        vendor_name: ''
-      });
-      setErrors({});
+      // Only reset form if submission was successful
+      if (success) {
+        setFormData({
+          gstin: '',
+          invoice_number: '',
+          invoice_date: '',
+          invoice_amount: '',
+          cgst: '',
+          sgst: '',
+          igst: '',
+          vendor_name: ''
+        });
+        setErrors({});
+      }
     } finally {
       setIsSubmitting(false);
     }
